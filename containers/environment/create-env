@@ -1,0 +1,167 @@
+#!/bin/bash
+
+##########################
+# versions in this release
+root_version=6.22.00
+geant4_version=10.07.p01
+bat_version=v0.9.4.1
+##########################
+
+set -e
+
+target_dir=$1
+
+if [ "X$target_dir" = "X" ]; then
+    echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
+    exit 1
+fi
+
+if [ -e $target_dir ]; then
+    echo "Target directory already exists - refusing to work on it" >&1
+    exit 1
+fi
+
+function announce {
+    echo
+    echo "#######################################################################################"
+    echo "## $1       ("`date -u`")"
+    echo
+}
+
+env_name=gemse_env
+mkdir $target_dir
+
+announce "Installing Miniconda"
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
+bash conda_setup.sh -b -p $target_dir/anaconda
+rm -f conda_setup.sh
+export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+
+
+announce "Installing Anaconda environment"
+echo -e "name: ${env_name}\n$(cat conda_settings.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
+$target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml
+
+
+announce "Cleaning Anaconda environment"
+$target_dir/anaconda/bin/conda clean --all --yes
+
+
+announce "Activating Anaconda environment"
+source $target_dir/anaconda/bin/activate ${env_name}
+
+
+#export PATH=$target_dir/bin:$PATH
+
+
+announce "Installing ROOT"
+cd /tmp
+wget -nv https://root.cern/download/root_v${root_version}.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
+tar xzf root_v${root_version}.Linux-ubuntu20-x86_64-gcc9.3.tar.gz -C $target_dir
+rm -rf root_v${root_version}.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
+
+
+announce "Installing Geant4"
+set -v
+mkdir $target_dir/geant4
+cd /tmp
+wget -nv http://cern.ch/geant4-data/releases/geant4.${geant4_version}.tar.gz
+tar xzf geant4.${geant4_version}.tar.gz
+cd geant4.${geant4_version}
+mkdir build && cd $_
+cmake -DCMAKE_INSTALL_PREFIX=${target_dir}/geant4 \
+      -DGEANT4_INSTALL_DATA=ON  \
+      -DGEANT4_USE_OPENGL_X11=ON \
+      -DGEANT4_BUILD_MULTITHREADED=OFF \
+      -DGEANT4_USE_QT=ON \
+      -DGEANT4_USE_GDML=OFF \
+      -DGEANT4_USE_RAYTRACER_X11=OFF \
+      -DGEANT4_USE_XM=OFF \
+      -DGEANT4_USE_HDF5=OFF \
+      /tmp/geant4.${geant4_version}
+make -j4
+make install
+cd /tmp
+rm -rf geant4.${geant4_version}.tar.gz geant4.${geant4_version}
+
+
+announce "Installing assimp"
+cd $target_dir
+git clone https://github.com/AG-Schumann/assimp.git # Our own AG-Schumann fork
+cd assimp
+cmake CMakeLists.txt && make -j4
+
+
+announce "Installing tetgen"
+cd $target_dir
+git clone https://github.com/christopherpoole/tetgen.git
+cd tetgen
+gcc -fPIC -c predicates.cxx
+gcc -fPIC -c tetgen.cxx
+gcc -shared -o tetlib.so tetgen.o predicates.o
+make -j4
+
+
+announce "Installing BAT"
+mkdir ${target_dir}/bat && cd $_
+git clone https://github.com/bat/bat.git -b ${bat_version}
+mkdir bat-install
+cd bat
+./autogen.sh
+source ${target_dir}/root/bin/thisroot.sh # BAT installer needs to find ROOT
+./configure --prefix=${target_dir}/bat/bat-install/
+make -j4
+make install
+
+
+announce "Adding setup.sh" # For easy sourcing
+cat >${target_dir}/setup.sh <<EOF
+#!/bin/bash
+
+source ${target_dir}/anaconda/bin/activate ${env_name}
+# Prepend to LD_LIBRARY_PATH - non-Python tools might be using it
+# export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
+
+# ROOT
+source ${target_dir}/root/bin/thisroot.sh
+
+# BAT
+export PATH="${target_dir}/bat/bat-install/bin:$PATH"
+export LD_LIBRARY_PATH="${target_dir}/bat/bat-install/lib:$LD_LIBRARY_PATH"
+export CPATH="${target_dir}/bat/bat-install/include:$CPATH"
+export PKG_CONFIG_PATH="${target_dir}/bat/bat-install/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+START_DIR=\$PWD
+cd \$START_DIR
+EOF
+
+
+announce "Adding setup_sims.sh" # For easy sourcing
+cat >${target_dir}/setup_sims.sh <<EOF
+#!/bin/bash
+
+# assimp
+export LD_LIBRARY_PATH="${target_dir}/assimp/bin:$LD_LIBRARY_PATH"
+
+# ROOT
+source ${target_dir}/root/bin/thisroot.sh
+
+# G4
+source ${target_dir}/geant4/bin/geant4.sh
+source ${target_dir}/geant4/share/Geant4-*/geant4make/geant4make.sh
+export G4WORKDIR=\${PWD}
+EOF
+
+
+announce "Adding zzz-50-gemse.sh"
+# This will be sourced when entering the container, but
+# should be sourced last in order to pick up for example
+# SINGULARITYENV_... vars
+mkdir -p /.singularity.d/env
+cat > /.singularity.d/env/zzz-50-gemse.sh <<EOF
+#!/bin/bash
+source ${target_dir}/setup.sh
+EOF
+
+
+announce "All done!"
