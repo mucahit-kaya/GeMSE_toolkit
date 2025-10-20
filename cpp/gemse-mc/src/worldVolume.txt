@@ -1,0 +1,5 @@
+// Define the world volume
+// (This is done here instead of the DetectorConstruction class simply to have an example
+// of txt-imported geometries)
+:VOLU World BOX 10.*m 10.*m 10.*m G4_AIR
+:VIS World OFF

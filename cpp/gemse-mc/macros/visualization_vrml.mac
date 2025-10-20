@@ -1,0 +1,10 @@
+#/control/execute macros/no_verbose.mac
+/control/verbose 2
+/run/verbose 2
+/tracking/verbose 2
+
+/vis/open VRML2FILE
+/vis/drawVolume
+/vis/viewer/set/viewpointThetaPhi 90. 180.
+/vis/viewer/zoom 1.4
+/vis/viewer/flush

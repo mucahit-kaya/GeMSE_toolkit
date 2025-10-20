@@ -1,0 +1,20 @@
+# Directories created during compilation
+bin
+tmp
+build
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# ROOT tends to spawn .d and .pcm files, in addition to the library
+# files .so that you typically do not want to synchronize
+*.d
+*.so
+*.pcm
+*_ACLiC_*
+*.root
+
+# Visualization
+*.wrl
