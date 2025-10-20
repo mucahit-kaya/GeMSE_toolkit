@@ -1,0 +1,9 @@
+dependencies:
+  - cmake=3.18.2
+  - graphviz
+  - nb_conda
+  - nodejs
+  - pip
+  - python=3.8
+  - pip:
+    - -r file:requirements.txt
