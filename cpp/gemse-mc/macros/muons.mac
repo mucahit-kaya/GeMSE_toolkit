@@ -1,0 +1,21 @@
+#write primaries to root file
+/writePrimaries false
+
+/tracking/verbose 0
+/run/verbose 0
+/control/verbose 0
+/GeMSE/gun/verbose 0
+
+/GeMSE/gun/generator muon
+# Defaulted to "generic" otherwise
+
+# We can set the efficiency for some gamma lines also for this simulation
+#/gammaline/energy 511
+#/gammaline/G4BR 1
+#/gammaline/NuDatBR 1
+#/gammaline/SigRegion 0.4
+#/gammaline/BkgRegion 10
+
+/analysis/setFileName muon_bkg.root
+/run/beamOn 20000000
+

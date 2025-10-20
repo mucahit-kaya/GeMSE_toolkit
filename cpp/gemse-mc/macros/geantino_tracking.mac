@@ -1,0 +1,22 @@
+#################
+#VERBOSITY
+/control/verbose  0
+/run/verbose      0     
+/event/verbose    0
+/tracking/verbose 2
+
+#################
+#DIRECTION
+/GeMSE/gun/type Point
+/GeMSE/gun/center 0. 0. 3000. mm 
+/GeMSE/gun/angtype direction
+/GeMSE/gun/direction 0 0 -1
+
+##################
+# particle type + energy spectrum
+/GeMSE/gun/particle geantino
+
+/run/beamOn 1
+#################
+# Tree Filling options
+#/run/writeEmpty true
