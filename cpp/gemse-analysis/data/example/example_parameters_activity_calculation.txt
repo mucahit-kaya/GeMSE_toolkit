@@ -1,0 +1,34 @@
+# sample name
+example
+# accuracy of MCMC (low/medium/high)
+medium
+# threshold on Bayes Factor for signal detection
+0.33
+# CL for activity limit
+0.95
+# fractional uncertainty of efficiencies
+0.02
+# isotope parameters folder
+data/example/isotope_parameters
+# sample spectrum file name
+data/example/root_files/example_spectrum_sig_1e-2Bq.root
+# background spectrum file name
+data/example/root_files/example_spectrum_bck_1e-3Bq.root
+# efficiency file name
+data/example/root_files/example_simulated_efficiencies.root
+# resolution file name
+data/example/root_files/example_resolution_function.root
+# results folder
+data/example/results/1e-2Bq
+# isotopes to analyze 
+U238
+Ra226
+Th228
+Ra228
+Co60
+K40
+Cs137
+Mn54
+Ti44
+Na22
+Al26
