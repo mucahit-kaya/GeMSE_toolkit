@@ -3,20 +3,16 @@ GeMSE_toolkit/
   examples/
   data-registry/            # small example data + schema, hashes with README
   containers/
-    docker/                 # base image + variants (CPU/GPU/minimal)
-    apptainer/              # Apptainer/Singularity recipe (derived from Docker)
-  pipelines/
-    hpge_material_screening/
-    hpge_resolution/
-    radon_chamber/
+    environment/                 # base image + variants (CPU/GPU/minimal) for python analysis, CLI, pipelines; fetched from GeMSE_environment
+  cpp/
+    gemse-root-scripts/       # ROOT/BAT based tools; originally from GeMSE_ROOT_scripts
+    gemse-analysis/          # C++ spectral analysis library; originally from GeMSE_analysis
+  jupyter-notebooks/      
+    analysis/               # Collection of notebooks to look into raw and processed CAEN MCA data; fetched from GeMSE_notebooks
   python/
     gemse-core/             # IO, schema, logging, config, common utils
     gemse-analyses/         # spectral analysis, CB fit, efficiency, etc. (API)
     gemse-cli/              # `gemse` command; plug-in discovery
-  cpp/
-    gemse-root-tools/       # ROOT/BAT based tools
-  ci/
-    github/                 # CI workflows
   LICENSE
   README.md
 
