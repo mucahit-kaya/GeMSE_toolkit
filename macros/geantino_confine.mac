@@ -1,0 +1,67 @@
+#STORE PRIMARIES
+/writePrimaries true
+
+#VERBOSITY
+/control/verbose  0
+/run/verbose      0     
+/event/verbose    0
+/tracking/verbose 0
+
+# particle type + energy spectrum
+/GeMSE/gun/particle geantino
+
+#CONFINEMENT
+/GeMSE/gun/type Volume
+/GeMSE/gun/shape Cylinder
+/GeMSE/gun/radius 7. cm
+/GeMSE/gun/halfz 7.5 cm
+/GeMSE/gun/center 0 0 0 cm
+/GeMSE/gun/angtype iso
+
+#RUN
+#/GeMSE/gun/confine Ge_detector
+#/analysis/setFileName geantino_Ge.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/confine Li_contact
+#/analysis/setFileName geantino_LiContact.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/halfz 10. cm
+#/GeMSE/gun/center 0 0 -6 cm
+#/GeMSE/gun/confine TeflonHolder
+#/analysis/setFileName geantino_TeflonHolder.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/confine DetHolder
+#/analysis/setFileName geantino_DetHolder.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/radius 8. cm
+#/GeMSE/gun/halfz 20. cm
+#/GeMSE/gun/center 0 0 0 cm
+#/GeMSE/gun/confine CuHsg
+#/analysis/setFileName geantino_CuCryo.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/radius 80. cm
+#/GeMSE/gun/halfz 70. cm
+#/GeMSE/gun/center 0 0 0 cm
+#/GeMSE/gun/confine CuShielding CuPlateFixed CuPlateMovable
+#/analysis/setFileName geantino_Cushield.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/confine innerPbShielding innerPbShieldingFixed innerPbShieldingMovable
+#/analysis/setFileName geantino_InnerPbShield.root
+#/run/beamOn 200000
+
+#/GeMSE/gun/confine outerPbShielding outerPbShieldingFixed outerPbShieldingMovable
+#/analysis/setFileName geantino_OuterPbShield.root
+#/run/beamOn 200000
+
+/GeMSE/gun/radius 100. cm
+/GeMSE/gun/halfz 2. cm
+/GeMSE/gun/center 0 0 -15 cm
+/GeMSE/gun/confine Coldfinger
+/analysis/setFileName geantino_Coldfinger.root
+/run/beamOn 200000
