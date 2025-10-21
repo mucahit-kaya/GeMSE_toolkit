@@ -11,7 +11,7 @@ GeMSE_toolkit/
   jupyter/
     gemse-notebooks/               # Collection of notebooks to look into raw and processed CAEN MCA data; fetched from GeMSE_notebooks
   python/
-    gemse-gemsepyana/       #  Collection of python tools for simple plotting/inspection of GeMSE spectra and data; fetched from GeMSE_gemsepyana
+    gemsepyana/       #  Collection of python tools for simple plotting/inspection of GeMSE spectra and data; fetched from GeMSE_gemsepyana
     gemse-core/             # IO, schema, logging, config, common utils
     gemse-cli/              # `gemse` command; plug-in discovery
   LICENSE
