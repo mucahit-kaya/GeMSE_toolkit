@@ -1,0 +1,10 @@
+site_name: GeMSE Toolkit Docs
+repo_url: https://github.com/mucahit-kaya/GeMSE_toolkit
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+nav:
+  - Home: index.md
+  

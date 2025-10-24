@@ -36,7 +36,7 @@ The long-term goal of **GeMSE_toolkit** is to provide:
 
 - A unified command-line interface (`gemse`) for all analysis and simulation pipelines.  
 - Shared configuration and data schemas for reproducible workflows.  
-- Portable container environments (Docker & Apptainer).  
+- Portable container environments (Docker, Singularity, Apptainer).  
 - Consistent documentation, testing, and CI/CD integration.  
 - Easy onboarding for new users and maintainers.
 
@@ -72,7 +72,6 @@ Please use `main` only as a reference for the latest structural snapshot.
 
 ## Contributors
 
-- **Mücahit Kaya** — initial integration, monorepo setup  
 - **AG Schumann Group (Uni Freiburg)** — original GeMSE repositories and analysis tools  
 
 ---
