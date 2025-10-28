@@ -9,6 +9,7 @@ RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y git \
                     wget \
                     dpkg-dev \
                     cmake \
+                    cmake-curses-gui \
                     g++ \
                     gcc \
                     binutils \

@@ -83,13 +83,16 @@ docker run -it --rm \
 Additionally,
 ```bash 
 docker run -it --rm \
+  --name g4 \
   -e DISPLAY=host.docker.internal:0 \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -e LIBGL_ALWAYS_INDIRECT=1 \
+  -e MESA_GL_VERSION_OVERRIDE=3.3 \
+  -e MESA_GLSL_VERSION_OVERRIDE=330 \
   -v "$PWD":/work \
   -w /work \
-  --name g4 \
   ramirezdiego/gemse_env:latest \
   /bin/bash
+
 ```
 
 - now you can use ROOT with graphical support inside the container.
