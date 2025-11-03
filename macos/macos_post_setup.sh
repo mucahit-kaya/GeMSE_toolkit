@@ -3,8 +3,9 @@
 # macOS specific post-installation steps
 set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/common/lib.sh"
-source "$SCRIPT_DIR/common/versions.sh"
+BASE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+source "$BASE_DIR/common/lib.sh"
+source "$BASE_DIR/common/versions.sh" 2>/dev/null || true
 
 # -------- Arg parse --------
 PREFIX=""
