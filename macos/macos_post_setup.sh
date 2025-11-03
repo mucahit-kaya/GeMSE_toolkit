@@ -22,24 +22,22 @@ done
 export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib"
 
-# --- macOS PATH fix ---
-if [[ "$OS" == "Darwin" ]]; then
-  # Zsh default: PATH includes ~/.local/bin. If not, add it.
-  ensure_path() {
-    local file="$1"
-    if [[ -f "$file" ]]; then
-      if ! grep -qs 'export PATH="$HOME/.local/bin:$PATH"' "$file"; then
-        printf '\nexport PATH="$HOME/.local/bin:$PATH"\n' >> "$file"
-        info "$file updated with ~/.local/bin"
-      fi
+
+ensure_path() {
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    if ! grep -qs 'export PATH="$HOME/.local/bin:$PATH"' "$file"; then
+      printf '\nexport PATH="$HOME/.local/bin:$PATH"\n' >> "$file"
+      info "$file updated with ~/.local/bin"
     fi
-  }
-  ensure_path "$HOME/.zprofile"
-  ensure_path "$HOME/.zshrc"
-  echo
-  info "PATH updated for macOS (zprofile/zshrc)."
-  info "Restart your terminal or run: source ~/.zprofile"
-fi
+  fi
+}
+ensure_path "$HOME/.zprofile"
+ensure_path "$HOME/.zshrc"
+echo
+info "PATH updated for macOS (zprofile/zshrc)."
+info "Restart your terminal or run: source ~/.zprofile"
+
 
 
 announce "Finalizing macOS post-installation steps"
