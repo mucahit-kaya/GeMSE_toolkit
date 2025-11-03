@@ -170,8 +170,19 @@ cd ${TOOL_CHAIN_DIR}
 TETGEN_DIR="${TOOL_CHAIN_DIR}/tetgen"
 git clone https://github.com/christopherpoole/tetgen.git
 cd ${TETGEN_DIR}
-clang++ -std=c++11 -O3 -fPIC tetgen.cxx predicates.cxx -o tetgen \
-  -Wno-deprecated-declarations
+# Source code compile
+clang++ -std=c++11 -O3 -fPIC -c tetgen.cxx predicates.cxx -Wno-deprecated-declarations
+# Static library
+ar rcs libtetgen.a tetgen.o predicates.o
+# Dynamic library
+clang++ -dynamiclib -o libtetgen.dylib tetgen.o predicates.o \
+  -install_name @rpath/libtetgen.dylib
+# Regular directory structure if needed
+# mkdir -p include lib
+# cp -f tetgen.h include/
+# mv -f libtetgen.* lib/
+# Symlink for consistency with Linux installations
+ln -sf libtetgen.dylib lib/tetlib.so
 make -j"${JOBS}"
 ok "tetgen installed."
 
