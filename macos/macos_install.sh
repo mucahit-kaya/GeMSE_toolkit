@@ -1,6 +1,6 @@
 # !/usr/bin/env bash
 
-set -euo pipefail
+#set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BASE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$BASE_DIR/common/lib.sh"
@@ -83,10 +83,11 @@ cd "${TOOL_CHAIN_DIR}"
 announce "Installing ROOT"
 ROOT_DIR="${TOOL_CHAIN_DIR}/root"
 echo "    ROOT version: ${ROOT_VERSION?}"
-curl -LO https://root.cern/download/root_v${ROOT_VERSION}.macos-11.5-arm64-clang120.tar.gz # Download ROOT precompiled for macOS ARM64 -> Fix later: maybe add x86_64 support
-curl -LO https://root.cern/download/root_v6.24.06.macos-11.5-arm64-clang120.tar.gz
-tar xzf root_v${ROOT_VERSION}.macos-11.5-arm64-clang120.tar.gz -C "${TOOL_CHAIN_DIR}"
-rm -f root_v${ROOT_VERSION}.macos-11.5-arm64-clang120.tar.gz
+curl -LO https://root.cern/download/root_v${ROOT_VERSION}.macos-12.7-arm64-clang140.tar.gz # Download ROOT precompiled for macOS ARM64 -> Fix later: maybe add x86_64 support
+
+tar xzf root_v${ROOT_VERSION}.macos-12.7-arm64-clang140.tar.gz -C "${TOOL_CHAIN_DIR}"
+rm -f root_v${ROOT_VERSION}.macos-12.7-arm64-clang140.tar.gz
+export ROOTSYS="${ROOT_DIR}"
 source ${ROOT_DIR}/bin/thisroot.sh # BAT installer needs to find ROOT
 ok "ROOT ${ROOT_VERSION} installed."
 
