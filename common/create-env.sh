@@ -72,16 +72,9 @@ case "$OS" in
         ;;
       2)
         info "Setting up container-based environment…"
-        if [[ "$RUNTIME" == "docker" || "$RUNTIME" == "podman" ]]; then
-          bash "$BASE_DIR/linux/install_docker_env.sh" \
-            --runtime "$RUNTIME" --image "$IMAGE" --prefix "$PREFIX" --bin-dir "$BIN_DIR" --conf-dir "$CONF_DIR"
-        elif [[ "$RUNTIME" == "apptainer" || "$RUNTIME" == "singularity" ]]; then
-          bash "$BASE_DIR/linux/install_apptainer_env.sh" \
-            --runtime "$RUNTIME" --image "$IMAGE" --prefix "$PREFIX" --images-dir "$PREFIX/images" --bin-dir "$BIN_DIR" --conf-dir "$CONF_DIR"
-        else
-          err "Unsupported runtime: $RUNTIME"
-          exit 1
-        fi
+        echo "Docker and singularity image will be installed under: $PREFIX/images"
+        bash "$BASE_DIR/linux/install_docker_env.sh" --os "$OS" --prefix "$PREFIX" --bin-dir "$BIN_DIR" --conf-dir "$CONF_DIR" --image "$IMAGE"
+
         ;;
       *)
         err "Unknown MODE: $MODE (use 'source' or 'docker')"
