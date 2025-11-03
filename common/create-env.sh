@@ -19,7 +19,7 @@ while [[ $# -gt 0 ]]; do
     --os) OS="$2"; shift 2;;
     --prefix) PREFIX="$2"; shift 2;;
     --bin-dir) BIN_DIR="$2"; shift 2;;
-    --conf-dir) CONF_DI="$2"; shift 2;;
+    --conf-dir) CONF_DIR="$2"; shift 2;;
     --image) IMAGE="$2"; shift 2;;
     *) err "Unknown arg: $1"; exit 1;;
   esac
