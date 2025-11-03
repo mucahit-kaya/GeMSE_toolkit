@@ -30,9 +30,10 @@ More information about docker environment usage is [here](run-environment.md).
 
 ```
 GeMSE_toolkit/
-├─ containers/
-│  ├─ environment/           # Docker & Singularity recipes
-│  └─ ...
+├─ docker/                   # Docker & Singularity recipes from GeMSE_environment
+├─ linux/                    # native Linux build scripts
+├─ macos/                    # native macOS build scripts
+├─ common/                   # shared config, schema, logging utils
 ├─ cpp/
 │  ├─ gemse-analysis/        # C++ analysis code
 │  ├─ gemse-mc/              # Geant4-based simulations

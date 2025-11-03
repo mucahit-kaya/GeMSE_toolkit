@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gemse"
+version = "0.1.0a0"
+description = "GeMSE toolkit CLI and Python helpers"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "click>=8", "numpy>=1.26", "scipy" 
+]
+
+[project.scripts]
+gemse = "gemse.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["gemse*"]
+exclude = ["cpp*", "macos*", "linux*", "docker*", "common*", "jupyter*"]

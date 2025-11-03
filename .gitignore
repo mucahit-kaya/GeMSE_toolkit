@@ -4,3 +4,10 @@ goal.md
 demo-schema.md
 /site/
 .vscode/
+code-ish.md
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+__pycache__/
