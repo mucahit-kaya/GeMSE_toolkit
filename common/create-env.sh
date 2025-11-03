@@ -65,12 +65,12 @@ case "$OS" in
     echo "  2) Container-based (Docker/Podman or Apptainer/Singularity; faster setup)"
     read -r -p "Choose 1 or 2 [default 2]: " MODE
     case "$MODE" in
-      source)
+      1)
         info "Building environment from source…"
         bash "$BASE_DIR/linux/install_source.sh" --prefix "$PREFIX" --bin-dir "$BIN_DIR" --conf-dir "$CONF_DIR"
         bash "$BASE_DIR/linux/post_setup.sh" --prefix "$PREFIX"
         ;;
-      docker)
+      2)
         info "Setting up container-based environment…"
         if [[ "$RUNTIME" == "docker" || "$RUNTIME" == "podman" ]]; then
           bash "$BASE_DIR/linux/install_docker_env.sh" \
