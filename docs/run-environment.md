@@ -53,6 +53,19 @@ For graphical support, use this command instead:
 xhost +local:docker
 ```
 Then run:
+```bash 
+docker run -it --rm \
+  --name g4 \
+  --user $(id -u):$(id -g) \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v "$PWD":/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+
+```
+Alternatively, one can run container as root.
 ```bash
 docker run -it --rm \
   -e DISPLAY=$DISPLAY \
