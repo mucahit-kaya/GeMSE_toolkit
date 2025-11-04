@@ -77,6 +77,7 @@ export PATH="${PREFIX}/bin:\${PATH}"
 # ---------- ROOT ----------
 if [ -f "${PREFIX}/toolchains/root/bin/thisroot.sh" ]; then
   # shellcheck disable=SC1091
+  export ROOTSYS="${PREFIX}/toolchains/root"
   source "${PREFIX}/toolchains/root/bin/thisroot.sh"
   echo "[GeMSE] ROOT initialized."
 else
