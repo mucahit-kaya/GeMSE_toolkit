@@ -83,10 +83,10 @@ cd "${TOOL_CHAIN_DIR}"
 announce "Installing ROOT"
 ROOT_DIR="${TOOL_CHAIN_DIR}/root"
 echo "    ROOT version: ${ROOT_VERSION?}"
-curl -LO https://root.cern/download/root_v${ROOT_VERSION}.macos-13.7-arm64-clang150.tar.gz # Download ROOT precompiled for macOS ARM64 -> Fix later: maybe add x86_64 support
+curl -LO https://root.cern/download/root_v${ROOT_VERSION}.macos-15.6-arm64-clang170.tar.gz # Download ROOT precompiled for macOS ARM64 -> Fix later: maybe add x86_64 support
 
-tar xzf root_v${ROOT_VERSION}.macos-13.7-arm64-clang150.tar.gz -C "${TOOL_CHAIN_DIR}"
-rm -f root_v${ROOT_VERSION}.macos-13.7-arm64-clang150.tar.gz
+tar xzf root_v${ROOT_VERSION}.macos-15.6-arm64-clang170.tar.gz -C "${TOOL_CHAIN_DIR}"
+rm -f root_v${ROOT_VERSION}.macos-15.6-arm64-clang170.tar.gz
 export DYLD_LIBRARY_PATH=""
 source root/bin/thisroot.sh # BAT installer needs to find ROOT
 ok "ROOT ${ROOT_VERSION} installed."
@@ -170,8 +170,19 @@ cd ${TOOL_CHAIN_DIR}
 TETGEN_DIR="${TOOL_CHAIN_DIR}/tetgen"
 git clone https://github.com/christopherpoole/tetgen.git
 cd ${TETGEN_DIR}
-clang++ -std=c++11 -O3 -fPIC tetgen.cxx predicates.cxx -o tetgen \
-  -Wno-deprecated-declarations
+# Source code compile
+clang++ -std=c++11 -O3 -fPIC -c tetgen.cxx predicates.cxx -Wno-deprecated-declarations
+# Static library
+ar rcs libtetgen.a tetgen.o predicates.o
+# Dynamic library
+clang++ -dynamiclib -o libtetgen.dylib tetgen.o predicates.o \
+  -install_name @rpath/libtetgen.dylib
+# Regular directory structure if needed
+# mkdir -p include lib
+# cp -f tetgen.h include/
+# mv -f libtetgen.* lib/
+# Symlink for consistency with Linux installations
+ln -sf libtetgen.dylib lib/tetlib.so
 make -j"${JOBS}"
 ok "tetgen installed."
 
