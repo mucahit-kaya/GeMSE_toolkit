@@ -1,0 +1,872 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../analyze-spectrum/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Run environment - GeMSE Toolkit Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-the-gemse-docker-environment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GeMSE Toolkit Docs" class="md-header__button md-logo" aria-label="GeMSE Toolkit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeMSE Toolkit Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Run environment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mucahit-kaya/GeMSE_toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GeMSE Toolkit Docs" class="md-nav__button md-logo" aria-label="GeMSE Toolkit Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeMSE Toolkit Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mucahit-kaya/GeMSE_toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    User Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Run environment
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run environment
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-docker-recommended-for-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Using Docker (recommended for macOS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Using Docker (recommended for macOS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-pull-prebuilt-image-from-dockerhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      A) Pull prebuilt image from DockerHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-build-the-image-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      B) Build the image locally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-singularity-apptainer-for-regular-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Using Singularity / Apptainer (for regular usage)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Using Singularity / Apptainer (for regular usage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-build-from-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option A: Build from Docker Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-build-from-a-local-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option B: Build from a local Docker image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-working-with-the-gemse-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Working with the GeMSE Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Working with the GeMSE Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-processing-a-gemse-measurement-to-root-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Processing a GeMSE Measurement to Root File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyze-spectrum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analyze spectrum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dev notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-docker-recommended-for-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Using Docker (recommended for macOS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Using Docker (recommended for macOS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-pull-prebuilt-image-from-dockerhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      A) Pull prebuilt image from DockerHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-build-the-image-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      B) Build the image locally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-singularity-apptainer-for-regular-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Using Singularity / Apptainer (for regular usage)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Using Singularity / Apptainer (for regular usage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-build-from-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option A: Build from Docker Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-build-from-a-local-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option B: Build from a local Docker image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-working-with-the-gemse-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Working with the GeMSE Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Working with the GeMSE Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-processing-a-gemse-measurement-to-root-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Processing a GeMSE Measurement to Root File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="running-the-gemse-docker-environment">Running the GeMSE Docker Environment</h1>
+<p>The <strong>GeMSE_environment</strong> repository provides a fully reproducible software environment for GeMSE analysis and simulations. It includes <strong>Miniconda</strong>, <strong>ROOT</strong>, <strong>BAT (Bayesian Analysis Toolkit)</strong>, and <strong>Geant4</strong>, all pre-installed and configured.</p>
+<hr />
+<h2 id="1-using-docker-recommended-for-macos">1. Using Docker (recommended for macOS)</h2>
+<p>If Docker is available on your machine, you can either <strong>build the image locally</strong> or <strong>pull the prebuilt image from DockerHub</strong>.</p>
+<p>List existing images:</p>
+<pre><code class="language-bash">docker images
+</code></pre>
+<hr />
+<h3 id="a-pull-prebuilt-image-from-dockerhub">A) Pull prebuilt image from DockerHub</h3>
+<p>A prebuilt version of the container is available at:
+→ <a href="https://hub.docker.com/r/ramirezdiego/gemse_env">DockerHub</a></p>
+<p>You can download it directly:</p>
+<pre><code class="language-bash">docker pull ramirezdiego/gemse_env:latest
+</code></pre>
+<p>Once downloaded, start an  container session:</p>
+<pre><code class="language-bash">docker run -it --rm \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+</code></pre>
+<p>This command:
+- runs the GeMSE environment interactively (<code>-it</code>)
+- removes the container when you exit (<code>--rm</code>)
+- mounts your current working directory inside the container (<code>-v "$PWD":/work</code>)
+- sets <code>/work</code> as the default working directory (<code>-w /work</code>)</p>
+<p>You will now be inside the GeMSE analysis environment, ready to use ROOT, Geant4, and BAT.</p>
+<p>For graphical support, use this command instead:
+ - For Linux systems: Open X11  access for local Docker containers:</p>
+<pre><code class="language-bash">xhost +local:docker
+</code></pre>
+<p>Then run:</p>
+<pre><code class="language-bash">docker run -it --rm \
+  --name g4 \
+  --user $(id -u):$(id -g) \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+
+</code></pre>
+<p>Alternatively, one can run container as root.</p>
+<pre><code class="language-bash">docker run -it --rm \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+</code></pre>
+<ul>
+<li>For macOS with XQuartz: Make sure "Allow connections from network clients" is enabled in XQuartz preferences.</li>
+</ul>
+<pre><code class="language-bash">brew install --cask xquartz # if not already installed
+xhost + 127.0.0.1
+</code></pre>
+<p>Then run:</p>
+<pre><code class="language-bash">docker run -it --rm \
+  -e DISPLAY=host.docker.internal:0 \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+</code></pre>
+<p>Additionally,</p>
+<pre><code class="language-bash">docker run -it --rm \
+  --name g4 \
+  -e DISPLAY=host.docker.internal:0 \
+  -e LIBGL_ALWAYS_INDIRECT=1 \
+  -e MESA_GL_VERSION_OVERRIDE=3.3 \
+  -e MESA_GLSL_VERSION_OVERRIDE=330 \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  ramirezdiego/gemse_env:latest \
+  /bin/bash
+
+</code></pre>
+<ul>
+<li>now you can use ROOT with graphical support inside the container.</li>
+</ul>
+<pre><code class="language-bash">root -l
+root [0] TBrowser b;
+</code></pre>
+<hr />
+<h3 id="b-build-the-image-locally">B) Build the image locally</h3>
+<p>If you prefer to build it yourself:</p>
+<pre><code class="language-bash">git clone https://github.com/AG-Schumann/GeMSE_environment.git
+cd GeMSE_environment
+docker build -t &lt;CONTAINER_NAME&gt; .
+</code></pre>
+<p>Run the locally built image:</p>
+<pre><code class="language-bash">docker run -it --rm \
+  -v &quot;$PWD&quot;:/work \
+  -w /work \
+  &lt;CONTAINER_NAME&gt; \
+  /bin/bash
+</code></pre>
+<hr />
+<p><strong>Tip:</strong> If you need graphical ROOT (X11) support, add the following flags:</p>
+<pre><code class="language-bash">-e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix
+</code></pre>
+<p>This enables ROOT's GUI and interactive canvases on your host system.</p>
+<hr />
+<h2 id="2-using-singularity-apptainer-for-regular-usage">2. Using Singularity / Apptainer (for regular usage)</h2>
+<p>Some scripts are especially written for Singularity usage. For regular Linux users, it is recommended to use Singularity/Apptainer instead of Docker.</p>
+<h3 id="option-a-build-from-docker-hub">Option A: Build from Docker Hub</h3>
+<p>If the image is available on DockerHub (e.g. <em>ramirezdiego/gemse_env:latest</em>), run:</p>
+<pre><code class="language-bash">singularity build --tmpdir ~/Desktop/ gemse_env.sif docker://ramirezdiego/gemse_env:latest
+</code></pre>
+<p>This command <strong>automatically pulls</strong> the Docker image from DockerHub and converts it into a Singularity image (<code>.sif</code> file). No manual <code>docker pull</code> is required.</p>
+<p>The <code>--tmpdir</code> argument specifies a temporary directory with enough free space during the build process.</p>
+<p>Then, launch an interactive shell:</p>
+<pre><code class="language-bash">singularity shell gemse_env.sif
+</code></pre>
+<hr />
+<h3 id="option-b-build-from-a-local-docker-image">Option B: Build from a local Docker image</h3>
+<p>If you built the Docker image locally and do not wish to upload it to DockerHub, you can still convert it manually.</p>
+<p><strong>Method 1 – Using docker-archive:</strong></p>
+<pre><code class="language-bash">docker build -t gemse_env:local .
+docker save gemse_env:local -o gemse_env.tar
+singularity build gemse_env.sif docker-archive://$(pwd)/gemse_env.tar
+</code></pre>
+<p><strong>Method 2 – Using oci-archive (if supported):</strong></p>
+<pre><code class="language-bash">docker build -t gemse_env:local .
+skopeo copy docker-daemon:gemse_env:local oci-archive:gemse_env_oci.tar:gemse_env_local
+singularity build gemse_env.sif oci-archive://$(pwd)/gemse_env_oci.tar
+</code></pre>
+<p>Both methods produce a single, portable <code>gemse_env.sif</code> file equivalent to the Docker image.</p>
+<hr />
+<h2 id="3-working-with-the-gemse-environment">3. Working with the GeMSE Environment</h2>
+<p>Once inside the container (via Docker or Singularity), ROOT, Geant4, and BAT must be set up by sourcing the appropriate scripts:</p>
+<p>For Analysis tools (ROOT + BAT):</p>
+<pre><code class="language-bash">source /opt/GeMSE/setup.sh
+</code></pre>
+<p>For Simulation tools (Geant4):</p>
+<pre><code class="language-bash">source /opt/GeMSE/geant4_setup.sh
+</code></pre>
+<p>This configures the environment variables and paths for the installed software.</p>
+<h3 id="example-processing-a-gemse-measurement-to-root-file">Example: Processing a GeMSE Measurement to Root File</h3>
+<pre><code class="language-bash">source /opt/GeMSE/setup.sh
+g++ process_GeMSE_data.cxx -o process_GeMSE_data $(root-config --cflags --libs) -lMinuit
+</code></pre>
+<p>or </p>
+<pre><code class="language-bash">g++ ../energy_resolution.cxx -o energy_resolution \
+    $(root-config --cflags) -O2 -std=c++17 \
+    $(root-config --libs) -lMinuit
+</code></pre>
+<p>Then run:</p>
+<pre><code class="language-bash">./process_GeMSE_data input_data.txt 
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
