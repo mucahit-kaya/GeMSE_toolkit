@@ -6,5 +6,9 @@ theme:
     - navigation.instant
     - navigation.tracking
 nav:
-  - Home: index.md
-  
+  - Home: index.md            # docs/index.md
+  - User Guide:
+      - Run environment: run-environment.md
+      - Analyze spectrum: analyze-spectrum.md
+  - Development:
+      - Dev notes: dev/index.md
