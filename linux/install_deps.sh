@@ -36,7 +36,7 @@ case "$PKM" in
       tar bzip2 xz-utils unzip \
       build-essential cmake pkg-config \
       libgl1 libglu1-mesa libx11-6 libxext6 libxrender1 libxrandr2 libxmu6 libxi6 \
-      xauth \
+      xauth libexpat libexpat1-dev\
       docker.io podman apptainer || true
     ;;
   *)
