@@ -34,9 +34,10 @@ case "$PKM" in
     sudo apt-get -y install \
       git curl wget ca-certificates \
       tar bzip2 xz-utils unzip \
+      qtcreator qtbase5-dev qt5-qmake cmake libqt53drender5 qtbase5-dev-tools qt3d5-dev\ 
       build-essential cmake pkg-config \
       libgl1 libglu1-mesa libx11-6 libxext6 libxrender1 libxrandr2 libxmu6 libxi6 \
-      xauth libexpat libexpat1-dev\
+      xauth libexpat libexpat1-dev zlib1g-dev libxerces-c-dev\
       docker.io podman apptainer || true
     ;;
   *)
