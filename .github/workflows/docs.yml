@@ -1,8 +1,15 @@
 name: Deploy docs
+
+permissions:
+  contents: write    # gh-pages branşına push için şart
+  pages: write       # (opsiyonel) Pages ayarı yapıyorsan işine yarar
+  id-token: write    # (opsiyonel) yeni Pages workflow’larında kullanılır
+
 on:
   push:
     branches: [ main, development ]
     paths: [ "mkdocs.yml", "docs/**" ]
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -12,5 +19,8 @@ jobs:
         with:
           python-version: "3.x"
       - run: pip install mkdocs mkdocs-material
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - run: mkdocs gh-deploy --force
-
