@@ -9,7 +9,7 @@ description = "GeMSE toolkit CLI and Python helpers"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-  "click>=8", "numpy>=1.26", "scipy" 
+  "click>=8", "numpy>=1.26", "scipy", "geviewer" 
 ]
 
 [project.scripts]
