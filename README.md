@@ -21,7 +21,7 @@ The following existing GeMSE repositories have been integrated via `git subtree`
 | [AG-Schumann/GeMSE_environment](https://github.com/AG-Schumann/GeMSE_environment) | `master` | `containers/environment/` |
 | [AG-Schumann/GeMSE_ROOT_scripts](https://github.com/AG-Schumann/GeMSE_ROOT_scripts) | `compass` | `cpp/gemse-root-scripts/` |
 | [AG-Schumann/GeMSE_analysis](https://github.com/AG-Schumann/GeMSE_analysis) | `master` | `cpp/gemse-analysis/` |
-| [AG-Schumann/GeMSE_MC](https://github.com/AG-Schumann/GeMSE_MC) | `compass` | `cpp/gemse-mc/` |
+| [AG-Schumann/GeMSE_MC](https://github.com/AG-Schumann/GeMSE_MC) | `master` | `cpp/gemse-mc/` |
 | [AG-Schumann/GeMSE_notebooks](https://github.com/AG-Schumann/GeMSE_notebooks) | `main` | `jupyter/gemse-notebooks/` |
 | [AG-Schumann/GeMSE_gemsepyana](https://github.com/AG-Schumann/GeMSE_gemsepyana) | `main` | `python/gemsepyana/` |
 
